@@ -5,6 +5,7 @@ import { Stack } from 'expo-router';
 import { Colores } from '@/constants/theme';
 import { log } from '@/lib/logger';
 import { asyncStoragePersister, queryClient, TIEMPOS } from '@/lib/queryClient';
+import '@/lib/reactotron';
 
 log('App', 'Arrancando: restaurando caché desde AsyncStorage...');
 

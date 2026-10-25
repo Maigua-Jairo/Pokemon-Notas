@@ -31,9 +31,10 @@ export function PokedexHeader({ titulo, atras, derecha }: Props) {
     <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
       <StatusBar style="light" />
       <View style={styles.fila}>
-        <View style={styles.lente}>
+        {/* La lente abre la Bitácora (logs con hora) para la demostración. */}
+        <Pressable onPress={() => router.push('/bitacora')} hitSlop={8} accessibilityLabel="Abrir bitácora de eventos" style={styles.lente}>
           <View style={styles.lenteBrillo} />
-        </View>
+        </Pressable>
         <Led encendido color={online ? Colores.ledVerde : Colores.ledRojo} etiqueta={online ? 'red' : 'off'} />
         <Led encendido={pendientes > 0} color={Colores.ledAmarillo} etiqueta={pendientes > 0 ? `cola ${pendientes}` : 'cola'} />
         <Led encendido={sincronizando} color={Colores.ledAzul} etiqueta="sync" />

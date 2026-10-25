@@ -3,8 +3,8 @@
 App en React Native + Expo que consume **PokeAPI** (solo lectura) y guarda notas propias en **MockAPI**, con **TanStack Query**, persistencia de caché en AsyncStorage y mutaciones sin conexión.
 
 - Repo: https://github.com/Maigua-Jairo/Pokemon-Notas
-- Último commit: `42bc3e7 Client and Service`. **Todo lo de las fases 0–3 está sin commitear.**
-- Estado: fases 0–3 hechas (typecheck y lint OK, bundle Android compila). **Falta probar en el dispositivo**, y faltan las fases 4–5 y la entrega.
+- Último commit publicado: `fd1b0c1` (fases 0–3). **Las fases 4–5 están sin commitear.**
+- Estado: fases 0–5 preparadas (typecheck, lint y expo-doctor OK). **Falta**: iconos del usuario, compilar el APK, probar en el dispositivo, video y entrega.
 
 ## Stack
 
@@ -110,20 +110,17 @@ Dispositivo Pokédex. La cabecera roja tiene la lente azul y tres **LEDs que mue
 - [ ] Ajustar el diseño tras verlo en el teléfono.
 - [ ] Reiniciar `expo start`: `.expo/types/router.d.ts` tiene entradas basura (`/../components/...`).
 
-### Fase 4: evidencia
-- [ ] (Opcional, recomendado) Reactotron con el plugin de TanStack Query y de AsyncStorage, solo en desarrollo.
-- [ ] Definir cómo se verán los logs desde el APK: `adb logcat *:S ReactNativeJS:V` con el teléfono conectado.
+### Fase 4: evidencia (hecha)
+- [x] Bitácora dentro de la app (`src/app/bitacora.tsx`, se abre tocando la lente azul): logs con hora visibles en el APK.
+- [x] Reactotron (`src/lib/reactotron.ts`) con los plugins de TanStack Query y AsyncStorage. Se activa con `EXPO_PUBLIC_REACTOTRON_HOST`. `usesCleartextTraffic: true` vía `expo-build-properties`.
+- [x] `adb logcat *:S ReactNativeJS:V` documentado en el README.
 
 ### Fase 5: build y entrega
-- [ ] Cambiar el icono y el splash (siguen siendo los de Expo, en azul) en `app.json` y `assets/`.
-- [ ] Opcional: `userInterfaceStyle: "light"` en `app.json`, porque la app tiene un solo tema.
-- [ ] `eas.json` con el perfil `preview` y `android.buildType: "apk"`.
-- [ ] `npx eas-cli@latest build -p android --profile preview` y comprobar que las `EXPO_PUBLIC_*` llegan al build.
-- [ ] **README** (reemplazar el de la plantilla) con:
-  - qué clave invalida cada mutación y por qué;
-  - la justificación de `staleTime` y `gcTime`;
-  - qué pasaría si `gcTime` fuera menor que `maxAge`;
-  - arquitectura del modo sin conexión e instrucciones de ejecución.
+- [x] `app.json`: nombre "Pokémon Notas", `android.package = com.jairomaigua.pokemonnotas`, `userInterfaceStyle: light`.
+- [x] `eas.json` con el perfil `preview` (APK). EAS CLI con la sesión de `jairo_maigua`.
+- [x] README completo (claves e invalidación, tiempos, gcTime < maxAge, persistencia, offline, logs, build).
+- [ ] **El usuario pone su icono y su splash** en `assets/images/` (icon.png, android-icon-*.png, splash-icon.png) y ajusta los colores en `app.json`.
+- [ ] `npx eas-cli@latest build -p android --profile preview` (la primera vez pide crear el proyecto EAS y el keystore).
 - [ ] Commits y push. Requieren autorización del usuario y van **sin** la línea Co-Authored-By de Claude.
 - [ ] Grabar el video (4 a 6 min, desde el APK, con los logs visibles, explicando los conceptos), seguir los 6 pasos del protocolo y publicarlo **de forma pública** en YouTube o TikTok.
 - [ ] Completar el PDF con el enlace del video y el de GitHub, y subirlo al aula virtual.
