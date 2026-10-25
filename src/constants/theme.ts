@@ -1,65 +1,56 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://unistyl.es/), etc.
- */
-
-import '@/global.css';
-
-import { Platform } from 'react-native';
-
-export const Colors = {
-  light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
-  },
-  dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
-  },
+// Tema "Pokédex": carcasa roja, tinta negra, papel crema y pantalla LCD verde.
+export const Colores = {
+  rojo: '#DC0A2D',
+  rojoOscuro: '#9E0620',
+  tinta: '#22201C',
+  tintaSuave: '#6B655A',
+  crema: '#F3ECDA',
+  papel: '#FFFCF3',
+  lente: '#2E9BEA',
+  lcd: '#B7D88C',
+  lcdTinta: '#27401A',
+  ledVerde: '#3CCB5A',
+  ledAmarillo: '#F6C643',
+  ledRojo: '#FF4B3E',
+  ledAzul: '#5EC8FF',
+  ledApagado: '#6E1222',
+  pendiente: '#F6C643',
 } as const;
 
-export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
-
-export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
-  },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
-  },
-  web: {
-    sans: 'var(--font-display)',
-    serif: 'var(--font-serif)',
-    rounded: 'var(--font-rounded)',
-    mono: 'var(--font-mono)',
-  },
-});
-
-export const Spacing = {
-  half: 2,
-  one: 4,
-  two: 8,
-  three: 16,
-  four: 24,
-  five: 32,
-  six: 64,
+export const Fuentes = {
+  pixel: 'PressStart2P_400Regular',
 } as const;
 
-export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
-export const MaxContentWidth = 800;
+export const BORDE = 3;
+export const SOMBRA = 4;
+export const RADIO = 6;
+
+// Colores oficiales de los tipos.
+export const TIPOS: Record<string, { color: string; nombre: string }> = {
+  normal: { color: '#A8A77A', nombre: 'Normal' },
+  fire: { color: '#EE8130', nombre: 'Fuego' },
+  water: { color: '#6390F0', nombre: 'Agua' },
+  electric: { color: '#F7D02C', nombre: 'Eléctrico' },
+  grass: { color: '#7AC74C', nombre: 'Planta' },
+  ice: { color: '#96D9D6', nombre: 'Hielo' },
+  fighting: { color: '#C22E28', nombre: 'Lucha' },
+  poison: { color: '#A33EA1', nombre: 'Veneno' },
+  ground: { color: '#E2BF65', nombre: 'Tierra' },
+  flying: { color: '#A98FF3', nombre: 'Volador' },
+  psychic: { color: '#F95587', nombre: 'Psíquico' },
+  bug: { color: '#A6B91A', nombre: 'Bicho' },
+  rock: { color: '#B6A136', nombre: 'Roca' },
+  ghost: { color: '#735797', nombre: 'Fantasma' },
+  dragon: { color: '#6F35FC', nombre: 'Dragón' },
+  dark: { color: '#705746', nombre: 'Siniestro' },
+  steel: { color: '#B7B7CE', nombre: 'Acero' },
+  fairy: { color: '#D685AD', nombre: 'Hada' },
+};
+
+export const colorTipo = (tipo?: string) => (tipo && TIPOS[tipo]?.color) || '#D9D2C0';
+
+export const numeroPokedex = (id: number) => `#${String(id).padStart(3, '0')}`;
+
+const SPRITES = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
+export const spritePixel = (id: number) => `${SPRITES}/${id}.png`;
+export const spriteArte = (id: number) => `${SPRITES}/other/official-artwork/${id}.png`;
